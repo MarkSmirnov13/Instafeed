@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta charset="utf-8" />
+ <meta id="viewport" name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+ <title>$SITE_NAME$</title>
+ <link type="text/css" rel="StyleSheet" href="/_st/pda.css" />
+ <link rel="apple-touch-icon" href="/pda_images/apple-touch-icon.png" />
+ <script type="text/javascript" src="http://s15.ucoz.net/src/jquery-1.6.1.js"></script>
+ <script type="text/javascript" src="http://s15.ucoz.net/src/uwnd.js?2"></script>
+ <script type="text/javascript">
+ window.onload = function() {
+ setTimeout(function(){window.scrollTo(0, 1);}, 100);
+ }
+ </script>
+</head>
+<body>
+ <div id="header">
+ <h1>$SITE_NAME$</h1>
+ <?if !($URI_ID$="page1")?> <a href="$HOME_PAGE_LINK$" id="backButton">Главная</a> <?endif?>
+ </div>
+<ul class="profile">
+	<li class="picture"><?if($_AVATAR$)?>$_AVATAR$<?endif?></li>
+	<li class="clearfix">
+    	<h2>$_USERNAME$</h2>
+       	<p> $_GROUP_NAME$ <?if($_GROUP_ICON$)?>$_GROUP_ICON$<?endif?></p>
+        <?if($_BANNED_TILL$)?>
+<?if($_BANNED_TILL$="1")?><div id="blockBanned" style="text-align:center;padding:3px;"><b style="color:red;">Активность заблокирована навсегда!</b></div><?else?><div id="blockBanned" style="text-align:center;padding:3px;">Активность заблокирована до $_BANNED_TILL$</div><?endif?>
+<?endif?>
+    </li>
+</ul>
+<ul class="data">
+<?if($UNET_ID$)?><li><img alt="" style="vertical-align:-4px;" border="0" src="http://s20.ucoz.net/img/ma/uid.gif"> <a href="$UNET_PROFILE_URL$" target="_blank"><b>uNet профиль</b></a></li><?endif?>
+<?if($_CHANGE_DETAILS_URL$)?><li><a href="$_CHANGE_DETAILS_URL$">Изменить данные</a></li><?endif?>
+<?if($_PM_READ_URL$)?><li><a href="$_PM_READ_URL$">Читать ЛС (<b>$UNREAD_PM$</b>)</a></li></div><?endif?>
+<?if($_PM_SEND_URL$)?><li><a href="$_PM_SEND_URL$" title="Отправить личное сообщение">Отправить ЛС</a></li></div><?endif?>
+</ul>
+<ul class="field">
+	<?if($_NAME$)?><li><h3>Имя:</h3>$_NAME$ <?if($_GENDER_NAME$)?>[ $_GENDER_NAME$ ]<?endif?></li><?endif?>
+    <?if($_STATUS$)?><li><h3>Статус:</h3>$_STATUS$</li><?endif?>
+    <?if($MODER_PANEL$)?><li><h3>Регистрационный IP:</h3><a href="http://www.ripe.net/perl/whois?$_IP_ADDRESS$" target="_blank">$_IP_ADDRESS$</a></li><?endif?>
+    <?if($_REG_TIME$)?><li><h3>Дата регистрации:</h3>$_REG_TIME$</li><?endif?>
+    <?if($_LOG_TIME$)?><li><h3>Дата входа:</h3>$_LOG_TIME$</li><?endif?>
+    <?if($_BIRTHDAY$)?><li><h3>Дата рождения:</h3>$_BIRTHDAY$ <b>$_AGE$</b> $_ZODIAC$</li><?endif?>
+   	<li><h3>E-mail:</h3><?if($_IS_OWN_PROFILE$)?>
+ $_EMAIL$ <?if($_EMAIL_IS_HIDDEN$)?><span style="font-size:7pt">(Адрес скрыт)</span><?endif?>
+<?else?>
+ <?if($MODER_PANEL$)?><a href="mailto:$_EMAIL$">$_EMAIL$</a><?if(!$_EMAIL_IS_VERIFIED$)?> <span style="color:red;" title="Not verified e-mail">*</span><?endif?>
+ <?else?>
+ <?if($_SEND_EMAIL_URL$)?><a href="$_SEND_EMAIL_URL$">Написать письмо пользователю</a>
+ <?else?><i>Адрес скрыт</i>
+ <?endif?>
+ <?endif?>
+<?endif?>
+<?if($_EMAIL_VERIFICATION_URL$)?>[ <b><a href="$_EMAIL_VERIFICATION_URL$"><span style="color:red">Подтвердить e-mail</span></a></b> ]<?endif?></li>
+    <?if($_WWW$)?><li><h3>Сайт:</h3>$_WWW$</li><?endif?>
+    <?if($_ICQ$)?><li><h3>ICQ:</h3>$_ICQ$</li><?endif?>
+    <?if($_AOL$)?><li><h3>AOL:</h3>$_AOL$</li><?endif?>
+    <?if($_MSN$)?><li><h3>MSN:</h3>$_MSN$</li><?endif?>
+    <?if($_YAHOO$)?><li><h3>Yahoo:</h3>$_YAHOO$</li><?endif?>
+    <?if($_COUNTRY$)?><li><h3>Страна:</h3><?if($UNET_ID$)?>Место проживания<?else?>Страна<?endif?>:</div> $_COUNTRY$</li><?endif?>
+	<?if($_STATE$)?><li><h3>Штат:</h3>$_STATE$</li><?endif?>
+	<?if($_CITY$)?><li><h3>Город:</h3>$_CITY$</li><?endif?>
+	<?if($_SIGNATURE$)?><li><h3>Подпись:</h3>$_SIGNATURE$</li><?endif?>        
+</ul>
+<ul class="field">
+	<?if($_RANK_NAME$)?><li><h3>Ранг: </h3><span title="Ранг: $_RANK$">$_RANK_ICON$</span> [ $_RANK_NAME$ ]</li><?endif?>
+    <?if($AWARDS_READ_URL$ || $_REP_READ_URL$)?>
+	<li><h3>Поощрения:</h3> <?if($AWARDS_READ_URL$)?><a href="$AWARDS_READ_URL$" title="Список наград">Награды (<b>$AWARDS$</b>)</a> <?if($AWARDS_DO_URL$)?>[<a href="$AWARDS_DO_URL$">+</a>]<?endif?>
+    <?endif?>
+    <?if($_REP_READ_URL$)?><?if($AWARDS_READ_URL$)?> &nbsp; <?endif?><a title="Смотреть историю репутации" class="repHistory" href="$_REP_READ_URL$">Репутация (<b>$_REPUTATION$</b>)</a><?if($_REP_DO_URL$)?> [<a href="$_REP_DO_URL$">&plusmn;</a>]<?endif?><?endif?></li>
+<?endif?>
+	<?if($_BAN_READ_URL$)?><li><h3>Замечания:</h3><a class="banPercent" title="Смотреть историю замечаний" href="$_BAN_READ_URL$">$_BAN_PERCENT$%</a> <?if($_BAN_DO_URL$)?>&nbsp; <a href="$_BAN_DO_URL$"><img alt="" style="margin:0;padding:0;border:0;" title="Изменить уровень замечаний" src="http://s20.ucoz.net/img/fr/wm.gif" width="10" height="9" /></a><img alt="" style="margin:0;padding:0;border:0;" src="http://s20.ucoz.net/img/fr/w$_BAN_RATING$.gif" width="49" height="9" /><a href="$_BAN_DO_URL$"><img alt="" style="margin:0;padding:0;border:0;" title="Изменить уровень замечаний" src="http://s20.ucoz.net/img/fr/wp.gif" width="10" height="9" /></a><?endif?>
+    </li>
+<?endif?>
+</ul>
+<?if($_IS_ACTIVITY$)?>
+<ul class="data">
+<?if($_COM_ENTRIES$)?><li><p><a href="$_COM_ACTIVITY_URL$" target="_blank">комментарии(<b>$_COM_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_FORUM_ENTRIES$)?><li><p><a href="$_FORUM_ACTIVITY_URL$" target="_blank">форум(<b>$_FORUM_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_BLOG_ENTRIES$)?><li><p><a href="$_BLOG_ACTIVITY_URL$" target="_blank">блог(<b>$_BLOG_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_NEWS_ENTRIES$)?><li><p><a href="$_NEWS_ACTIVITY_URL$" target="_blank">новости(<b>$_NEWS_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_PUBL_ENTRIES$)?><li><p><a href="$_PUBL_ACTIVITY_URL$" target="_blank">статьи(<b>$_PUBL_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_LOAD_ENTRIES$)?><li><p><a href="$_LOAD_ACTIVITY_URL$" target="_blank">файлы(<b>$_LOAD_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_DIR_ENTRIES$)?><li><p><a href="$_DIR_ACTIVITY_URL$" target="_blank">сайты(<b>$_DIR_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_BOARD_ENTRIES$)?><li><p><a href="$_BOARD_ACTIVITY_URL$" target="_blank">объявления(<b>$_BOARD_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_PHOTO_ENTRIES$)?><li><p><a href="$_PHOTO_ACTIVITY_URL$" target="_blank">фото(<b>$_PHOTO_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_STUFF_ENTRIES$)?><li><p><a href="$_STUFF_ACTIVITY_URL$" target="_blank">игры(<b>$_STUFF_ENTRIES$</b>)</a> </p></li><?endif?>
+<?if($_SHOP_ENTRIES$)?><li><p><a href="$_SHOP_ACTIVITY_URL$" target="_blank">товары(<b>$_SHOP_ENTRIES$</b>)</a> </p></li><?endif?>
+</ul>
+<?endif?>
+<div class="site-content">
+<h4>Панель пользователя</h4>
+<?if($USER_LOGGED_IN$)?>
+<div><a href="$PERSONAL_PAGE_LINK$" class="catName">$USERNAME$</a></div>
+ <div><a href="$LOGOUT_LINK$" class="catName"><!--<s5164>-->Выход<!--</s>--></a></div>
+ </ul>
+<?else?> 
+$LOG_FORM$
+<?endif?> 
+</div> 
+ <ul class="data"><li><p><a href="/index/53"><!--<s5312>-->Полная версия сайта<!--</s>--></a></p></li></ul> 
+</body>
+</html>
